@@ -1,0 +1,98 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "318787bd5ef34640c8a9433e7c586981",
+    "content-hash": "d2f4ed95ecdbf1b55958613cf4de74e7",
+    "packages": [
+        {
+            "name": "setasign/fpdf",
+            "version": "1.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Setasign/FPDF.git",
+                "reference": "2c68c9e6c034ac3187d25968790139a73184cdb1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Setasign/FPDF/zipball/2c68c9e6c034ac3187d25968790139a73184cdb1",
+                "reference": "2c68c9e6c034ac3187d25968790139a73184cdb1",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "fpdf.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "no usage restriction"
+            ],
+            "authors": [
+                {
+                    "name": "Olivier Plathey",
+                    "email": "oliver@fpdf.org",
+                    "homepage": "http://fpdf.org/"
+                }
+            ],
+            "description": "FPDF is a PHP class which allows to generate PDF files with pure PHP. F from FPDF stands for Free: you may use it for any kind of usage and modify it to suit your needs.",
+            "homepage": "http://www.fpdf.org",
+            "keywords": [
+                "fpdf",
+                "pdf"
+            ],
+            "time": "2016-01-01 17:47:15"
+        },
+        {
+            "name": "skurrier/pdflib",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SkUrRiEr/pdflib.git",
+                "reference": "18416866d247d4bca901d3dfd385c521f3b38a6f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SkUrRiEr/pdflib/zipball/18416866d247d4bca901d3dfd385c521f3b38a6f",
+                "reference": "18416866d247d4bca901d3dfd385c521f3b38a6f",
+                "shasum": ""
+            },
+            "require": {
+                "setasign/fpdf": "~1.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PDFLib\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "James Healey",
+                    "email": "jayhealey@gmail.com"
+                },
+                {
+                    "name": "Julian Calaby",
+                    "email": "julian.calaby@gmail.com"
+                }
+            ],
+            "description": "A basic PHP PDF library based on FPDF",
+            "time": "2016-02-24 05:22:51"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

@@ -1,0 +1,23 @@
+{
+  "name": "skurrier/document-downloader",
+  "description": " Basic downloader for documents, e.g. PDFs",
+  "license": "LGPL-2.1",
+  "authors": [
+    {
+      "name": "Julian Calaby",
+      "email": "julian.calaby@gmail.com"
+    },
+    {
+      "name": "James Healey",
+      "email": "jayhealey@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "DocDownloader\\": "src/"
+    }
+  },
+  "require": {
+    "skurrier/pdflib": "~1.0"
+  }
+}
