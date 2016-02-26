@@ -28,8 +28,7 @@ class will be used as if it were the class for the named pdf. In this case, the
 params as passed to `->display()` will be all path components specified in the
 URL.
 
-This class must be a subclass of the `DocDownloader\Document\BaseDocument`
-class.
+This class must implement `DocDownloader\Interfaces\DocumentType` class.
 
 The `->display()` method of the selected class will be called with the params
 as specified in the URL as an array as it's only parameter.

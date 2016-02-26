@@ -1,16 +1,15 @@
 <?php namespace DocDownloader\Document;
 
-use DocDownloader\BaseDocument;
-use DocDownloader\Interfaces\DocumentType;
+use DocDownloader\DocumentType\PDFLibDocument;
 
-class ExampleDocument extends BaseDocument
+class ExampleDocument extends PDFLibDocument
 {
     /**
      * @inherit
      */
-    public function __construct(DocumentType $pdf)
+    public function __construct()
     {
-        parent::__construct($pdf);
+        parent::__construct();
 
         $this->SetAutoPageBreak(true, $this->bMargin + $this->FontSizePt);
         $this->SetTopMargin($this->tMargin + $this->FontSizePt);

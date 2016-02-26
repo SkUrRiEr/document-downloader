@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 
 session_cache_limiter("private_no_expire");
 
-use DocDownloader\BaseDocument;
+use DocDownloader\Interfaces\DocumentType;
 use DocDownloader\FallbackDocument;
 use DocDownloader\DocumentType\PDFLibDocument;
 
@@ -23,8 +23,6 @@ if (isset($_SERVER["PATH_INFO"]) && $_SERVER["PATH_INFO"] != "") {
 
     $items = explode("/", $path);
 }
-
-$pdfdoc = new PDFLibDocument();
 
 if ($_SERVER["HTTP_USER_AGENT"] == "contype") {
         header("Content-Type: application/pdf");
@@ -47,11 +45,11 @@ if (count($items) > 0) {
 $namespacedClassName = "DocDownloader\\Document\\{$className}Document";
 
 if ($className != null && class_exists($namespacedClassName)) {
-    $document = new $namespacedClassName($pdfdoc);
+    $document = new $namespacedClassName();
 }
 
-if (! is_subclass_of($document, BaseDocument::class)) {
-    $document = new FallbackDocument($className, $pdfdoc);
+if (! is_subclass_of($document, DocumentType::class)) {
+    $document = new FallbackDocument($className);
 }
 
 $etag = $document->getETag($args);

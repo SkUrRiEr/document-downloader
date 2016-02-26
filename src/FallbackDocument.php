@@ -1,16 +1,17 @@
 <?php namespace DocDownloader;
 
-class FallbackDocument extends BaseDocument
+use DocDownloader\DocumentType\PDFLibDocument;
+
+class FallbackDocument extends PDFLibDocument
 {
     /**
      * FallbackDocument constructor.
      *
-     * @param \DocDownloader\Interfaces\DocumentType $classname
-     * @param                                 $document
+     * @param string $classname
      */
-    public function __construct($classname, $document)
+    public function __construct($classname)
     {
-        parent::__construct($document);
+        parent::__construct();
 
         $this->setMessage("Document class not defined");
     }

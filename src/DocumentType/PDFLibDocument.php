@@ -2,17 +2,69 @@
 
 use PDFLib\PDFLib;
 use DocDownloader\Interfaces\DocumentType;
-use DocDownloader\Interfaces\EventListener;
 
-class PDFLibDocument extends PDFLib implements DocumentType
+abstract class PDFLibDocument extends PDFLib implements DocumentType
 {
+    /**
+     * @var bool
+     */
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $message;
+
     private $listeners;
 
     public function __construct($orientation = "P", $unit = "mm", $format = "A4")
     {
         parent::__construct($orientation, $unit, $format);
 
-        $this->listeners = array();
+        $this->name    = false;
+        $this->message = "No reason specified.";
+    }
+
+    /**
+     * @param string $name
+     */
+    protected function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return bool|string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $message
+     */
+    protected function setMessage($message)
+    {
+        $this->message = $message;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * @param $args
+     *
+     * @return null
+     */
+    public function getETag($args)
+    {
+        return null;
     }
 
     public function getContent()
@@ -20,29 +72,25 @@ class PDFLibDocument extends PDFLib implements DocumentType
         return $this->Output(null, "S");
     }
 
-    /**
-     * @param EventListener $class
-     */
-    public function addListener(EventListener $class)
+    public function onHeader()
     {
-        $this->listeners[] = $class;
+    }
+
+    public function onFooter()
+    {
     }
 
     public function Footer()
     {
         parent::Footer();
 
-        foreach ($this->listeners as $l) {
-            $l->onFooter();
-        }
+        $this->onFooter();
     }
 
     public function Header()
     {
         parent::Header();
 
-        foreach ($this->listeners as $l) {
-            $l->onHeader();
-        }
+        $this->onHeader();
     }
 }
