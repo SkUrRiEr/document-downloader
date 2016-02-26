@@ -67,6 +67,22 @@ abstract class PDFLibDocument extends PDFLib implements DocumentType
         return null;
     }
 
+    /**
+     * @return string
+     */
+    public function getMimeType()
+    {
+        return "application/pdf";
+    }
+
+    /**
+     * @return string
+     */
+    public function getExtension()
+    {
+        return "pdf";
+    }
+
     public function getContent()
     {
         return $this->Output(null, "S");

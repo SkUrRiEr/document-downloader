@@ -13,6 +13,16 @@ interface DocumentType
     public function getMessage();
 
     /**
+     * @return string
+     */
+    public function getMimeType();
+
+    /**
+     * @return string
+     */
+    public function getExtension();
+
+    /**
      * @param $args
      *
      * @return null

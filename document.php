@@ -24,12 +24,6 @@ if (isset($_SERVER["PATH_INFO"]) && $_SERVER["PATH_INFO"] != "") {
     $items = explode("/", $path);
 }
 
-if ($_SERVER["HTTP_USER_AGENT"] == "contype") {
-        header("Content-Type: application/pdf");
-
-        exit;
-}
-
 $args = array();
 for ($i = 1; $i < count($items); $i++) {
     $args[] = $items[$i];
@@ -52,6 +46,12 @@ if (! is_subclass_of($document, DocumentType::class)) {
     $document = new FallbackDocument($className);
 }
 
+if ($_SERVER["HTTP_USER_AGENT"] == "contype") {
+        header("Content-Type: ".$document->getMimeType());
+
+        exit;
+}
+
 $etag = $document->getETag($args);
 
 if ($etag != null) {
@@ -69,19 +69,19 @@ if ($ret != null && $ret != false) {
 }
 
 if ($ret === null) {
-    $content = "<html><head><title>PDF Page</title></head><body><h1>PDF Not Found</h1><h2>Error Message:</h2><p>".$document->getMessage()."</p></body></html>";
+    $content = "<html><head><title>PDF Page</title></head><body><h1>Document Not Found</h1><h2>Error Message:</h2><p>".$document->getMessage()."</p></body></html>";
 
     header("HTTP/1.1 404 Page Not Found");
 } elseif ($ret === false) {
-    $content = "<html><head><title>PDF Generation Failed</title></head><body><h1>PDF Generation Failed</h1><h2>Error Message:</h2><p>".$document->getMessage()."</p></body></html>";
+    $content = "<html><head><title>Document Generation Failed</title></head><body><h1>PDF Generation Failed</h1><h2>Error Message:</h2><p>".$document->getMessage()."</p></body></html>";
 
     header("HTTP/1.1 500 Server Error");
 } else {
-    header("Content-Type: application/pdf");
+    header("Content-Type: ".$document->getMimeType());
 
     $content = $document->getContent();
 
-    header("Content-Disposition: inline; filename=".$name.".pdf;");
+    header("Content-Disposition: inline; filename=".$name.".".$document->getExtension().";");
     header("Content-Length: ".strlen($content));
 }
 

@@ -5,42 +5,42 @@ The goal of this project is to provide a basic downloader for documents which mi
 
 It's based on "pdf.php" and related libraries from pdflib at 96e6efb.
 
-## pdf.php
+## document.php
 
-pdf.php is the top-level file to download documents through. It uses the downloader class for most of it's functionality.
+document.php is the top-level file to download documents through. It uses the downloader class for most of it's functionality.
 
 ### Usage
-pdf.php is called like:
+document.php is called like:
 
-`http://site/path/to/dir/pdf.php[/name][/params][.pdf][?params=values...]`
+`http://site/path/to/dir/document.php[/name][/params][.ext][?params=values...]`
 
 (items in square brackets are optional)
 
-The `.pdf` after the params is optional and will, if it exists, be stripped
+The extension after the params is optional and will, if it exists, be stripped
 out of the parameters.
 
-Upon being called like so, pdf.php will attempt to instansiate the class named
-`DocDownloader\Document\NameDocument`
+Upon being called like so, document.php will attempt to instansiate the class
+named `DocDownloader\Document\NameDocument`
 
 If the class cannot be found, or the name is omitted, it will instead
 instansiate the class `DocDownloader\Document\FallbackDocument` instead. This
-class will be used as if it were the class for the named pdf. In this case, the
-params as passed to `->display()` will be all path components specified in the
-URL.
+class will be used as if it were the class for the named document. In this
+case, the params as passed to `->display()` will be all path components
+specified in the URL.
 
 This class must implement `DocDownloader\Interfaces\DocumentType` class.
 
 The `->display()` method of the selected class will be called with the params
 as specified in the URL as an array as it's only parameter.
 
-If the PDF is successfully generated, this method must return true. If there
-is no data, it must return `null`, and if there is an error, it must return
-`false`.
+If the document is successfully generated, this method must return true. If
+there is no data, it must return `null`, and if there is an error, it must
+return `false`.
 
 The `->getName()` method of the selected class will then be called with no
 parameters.
 
-This method will either return a string naming the PDF. (e.g. for a PDF
+This method will either return a string naming the document. (e.g. for a PDF
 called `example.pdf`, this method will return `example`) `false` if there
 is an error or `null` if there is no data.
 
@@ -48,7 +48,7 @@ If `->display()` or `->getName()` returns false, then a 500 class error page
 will be generated with the string returned from `->getMessage()`. If either of
 them return `null`, then a 404 page will be generated with the string from
 `->getMessage()`. Otherwise, the `->Output()` method will be called on the class
-to get the PDF data.
+to get the document data.
 
 ## Installation
 The dependencies are stored in `composer.json`, so install composer (see https://getcomposer.org/ for instructions) then run:
@@ -67,7 +67,7 @@ All contributions must be licensed under the LGPL 2.1.
 
 It's output can be found by loading:
 
-`http://site/path/to/dir/pdf.php/example.pdf`
+`http://site/path/to/dir/document.php/example.pdf`
 
 in a browser.
 
