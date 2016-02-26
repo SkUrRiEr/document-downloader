@@ -20,15 +20,16 @@ The `.pdf` after the params is optional and will, if it exists, be stripped
 out of the parameters.
 
 Upon being called like so, pdf.php will attempt to instansiate the class named
-`PDFLib\Document\NameDocument`
+`DocDownloader\Document\NameDocument`
 
 If the class cannot be found, or the name is omitted, it will instead
-instansiate the class `PDFLib\Document\FallbackDocument` instead. This class
-will be used as if it were the class for the named pdf. In this case, the
+instansiate the class `DocDownloader\Document\FallbackDocument` instead. This
+class will be used as if it were the class for the named pdf. In this case, the
 params as passed to `->display()` will be all path components specified in the
 URL.
 
-This class must be a subclass of the `PDFLib\Document\BaseDocument` class.
+This class must be a subclass of the `DocDownloader\Document\BaseDocument`
+class.
 
 The `->display()` method of the selected class will be called with the params
 as specified in the URL as an array as it's only parameter.
