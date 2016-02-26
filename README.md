@@ -63,12 +63,19 @@ All contributions must contain a signed-off-by line in accordance with the Devel
 All contributions must be licensed under the LGPL 2.1.
 
 ## Usage / API
-`src/Document/ExampleDocument.php` is a basic test case and provides a good reference for how a pdf class should work.
+`src/Document/ExampleDocument.php` and `src/FallbackDocument.php` are good
+examples of how document classes should work. The two document types in
+`src/DocumentType` implement the basic API and should be considered a reference
+for producing further document types.
 
-It's output can be found by loading:
+`ExampleDocument`'s output can be found by loading:
 
 `http://site/path/to/dir/document.php/example.pdf`
 
 in a browser.
 
-The PDF file produced is also saved in the top directory as `example.pdf`.
+`FallbackDocument`'s output can be found by loading:
+
+`http://site/path/to/dir/document.php/fallback.pdf`
+
+in a browser.
