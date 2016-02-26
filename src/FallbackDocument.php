@@ -1,9 +1,11 @@
 <?php namespace DocDownloader;
 
-use DocDownloader\DocumentType\PDFLibDocument;
+use DocDownloader\Interfaces\DocumentType;
 
-class FallbackDocument extends PDFLibDocument
+class FallbackDocument implements DocumentType
 {
+    private $classname;
+
     /**
      * FallbackDocument constructor.
      *
@@ -11,9 +13,37 @@ class FallbackDocument extends PDFLibDocument
      */
     public function __construct($classname)
     {
-        parent::__construct();
+        $this->classname = $classname;
+    }
 
-        $this->setMessage("Document class not defined");
+    public function getName()
+    {
+        return "fallback";
+    }
+
+    public function getMessage()
+    {
+        return $this->classname." is not implemented.";
+    }
+
+    public function getMimeType()
+    {
+        return "text/html";
+    }
+
+    public function getExtension()
+    {
+        return "html";
+    }
+
+    public function getETag($args)
+    {
+        return null;
+    }
+
+    public function getContent()
+    {
+        return str_replace("{{{CLASSNAME}}}", $this->classname, file_get_contents(__DIR__."/fallback.html"));
     }
 
     /**
@@ -23,6 +53,6 @@ class FallbackDocument extends PDFLibDocument
      */
     public function display($args)
     {
-        return null;
+        return true;
     }
 }
